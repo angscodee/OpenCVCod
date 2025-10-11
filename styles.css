@@ -1,0 +1,46 @@
+/* ===========================
+   ESTILO HAWKINS LAB
+=========================== */
+body {
+    background-color: black !important;
+    color: #E50914 !important;
+    font-family: 'Courier New', monospace;
+}
+
+/* Título principal con efecto parpadeo */
+.title {
+    text-align: center;
+    font-size: 50px;
+    color: #E50914;
+    text-shadow: 0 0 15px #E50914;
+    animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 0 0 10px #E50914, 0 0 20px #E50914;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* Subtítulo */
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+/* Texto del capítulo */
+.chapter {
+    color: #E50914;
+    text-shadow: 0 0 8px #E50914;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #111 !important;
+    border-right: 2px solid #E50914;
+}
