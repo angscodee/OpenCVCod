@@ -206,4 +206,4 @@ cards_html = """
 
 st.markdown(cards_html, unsafe_allow_html=True)
 
-show_tilted_image("img/bott.png")
+show_tilted_image("img/Bott.png")
