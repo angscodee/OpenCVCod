@@ -41,10 +41,21 @@ if uploaded_file is None:
     uploaded_file = "img/ejercicio02.png"
 
 # ===========================
-# LEER IMAGEN
+# LEER IMAGEN (manejo doble) 
 # ===========================
-file_bytes = np.asarray(bytearray(open(uploaded_file, "rb").read()), dtype=np.uint8)
-img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+if isinstance(uploaded_file, str):
+    # Caso: imagen de ejemplo local
+    img = cv2.imread(uploaded_file, cv2.IMREAD_COLOR)
+else:
+    # Caso: imagen subida por el usuario
+    uploaded_file.seek(0)  # 🔁 reinicia el puntero, por seguridad
+    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+
+# Validar lectura
+if img is None:
+    st.error("❌ No se pudo cargar la imagen. Verifica el archivo.")
+    st.stop()
 
 # ===========================
 # EFECTO: Motion Blur
@@ -71,6 +82,5 @@ with col1:
     st.image(cv2.cvtColor(img, cv2.COLOR_BGR2RGB), caption="Original", use_container_width=True)
 with col2:
     st.image(cv2.cvtColor(output, cv2.COLOR_BGR2RGB), caption="Con Motion Blur", use_container_width=True)
-
 
 

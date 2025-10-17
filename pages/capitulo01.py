@@ -44,8 +44,19 @@ if uploaded_file is None:
 # ===============================
 # LEER IMAGEN
 # ===============================
-file_bytes = np.asarray(bytearray(open(uploaded_file, "rb").read()), dtype=np.uint8)
-img = cv2.imdecode(file_bytes, cv2.IMREAD_GRAYSCALE)
+if isinstance(uploaded_file, str):
+    # Caso: imagen por defecto en ruta
+    img = cv2.imread(uploaded_file, cv2.IMREAD_GRAYSCALE)
+else:
+    # Caso: imagen subida por el usuario
+    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    img = cv2.imdecode(file_bytes, cv2.IMREAD_GRAYSCALE)
+
+# Validar que se haya leído correctamente
+if img is None:
+    st.error("❌ No se pudo cargar la imagen. Verifica el archivo.")
+    st.stop()
+
 rows, cols = img.shape
 
 # ===============================
