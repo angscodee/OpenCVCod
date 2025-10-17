@@ -18,7 +18,7 @@ if modo == "Subir imagen":
         img = np.array(Image.open(uploaded_file).convert("RGB"))
         img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 elif modo == "Usar imagen de carpeta":
-    img_path = "img/ejemplo030.png"
+    img_path = "img/ejercicio030.png"
     img_bgr = cv2.imread(img_path)
 
 if 'img_bgr' in locals():
